@@ -1,6 +1,9 @@
-# Pull base image 
-From tomcat:8-jre8 
+FROM eclipse-temurin:21-jre
 
-# Maintainer 
-MAINTAINER "valaxytech@gmail.com" 
-COPY ./webapp.war /usr/local/tomcat/webapps
+WORKDIR /app
+
+COPY target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
